@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-ch" lang="zh-ch">
+<head>
+  <link href="//gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.53" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>First &middot; tiyee&#39;s 微言微语</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="http://tiyee.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://tiyee.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://tiyee.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://tiyee.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="tiyee&#39;s 微言微语" />
+
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://tiyee.github.io/"><h1>tiyee&#39;s 微言微语</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://tiyee.github.io/">Home</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2019. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>First</h1>
+  <time datetime=2019-01-31T14:42:35&#43;0800 class="post-date">Thu, Jan 31, 2019</time>
+  
+
+<h1 id="新版微博新鲜事接口">新版微博新鲜事接口</h1>
+
+<p>返回结果格式：</p>
+
+<ul>
+<li>成功时 <code>error == 0</code></li>
+<li>失败时 <code>error &gt; 0</code></li>
+</ul>
+
+<h1 id="前置说明">前置说明</h1>
+
+<ul>
+<li>未发布过的新鲜事：<code>publish_time = 0</code></li>
+<li>榜上的新鲜事：<code>publish_time &gt; 1000000000</code></li>
+<li>榜下但可访问的新鲜事：<code>1000000000  &gt; publish_time &gt; 0</code></li>
+<li>删除的新鲜事：<code>status = 10</code></li>
+</ul>
+
+<h1 id="新鲜事列表">新鲜事列表</h1>
+
+<h2 id="发布管理">发布管理</h2>
+
+<ul>
+<li>发布管理： /fresh/ajax_getList</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-7-09 15:13</mark></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>false</td>
+<td>页码</td>
+<td>可选，默认1</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>false</td>
+<td>每页最大条数</td>
+<td>可选，默认20，10-50之间（含）</td>
+</tr>
+
+<tr>
+<td>kw</td>
+<td>string</td>
+<td>false</td>
+<td>搜索关键词</td>
+<td>可选</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+    &quot;result&quot;: {
+        &quot;total&quot;: 33,
+        &quot;total_pages&quot;: 2,
+        &quot;current&quot;: 1,
+        &quot;list&quot;: [
+            {
+                &quot;index&quot;: 1,
+                &quot;id&quot;: 7541341254850561,
+                &quot;oid&quot;: &quot;1022:23126100007541341254850561&quot;,
+                &quot;title&quot;: &quot;说你傻，你真傻11111&quot;,
+                &quot;status&quot;: -3,
+                &quot;editor&quot;: &quot;@江之涛涛[互联网]&quot;,
+                &quot;edited_time_ts&quot;: 1499308491,
+                &quot;edited_time&quot;: &quot;2017-07-06 10:34:51&quot;,
+                &quot;created_time&quot;: &quot;2017-07-03 14:54:57&quot;,
+                &quot;publish_time&quot;: &quot;2017-07-03 15:09:46&quot;,
+                &quot;isPinned&quot;: false,
+                &quot;editable&quot;: false,
+                &quot;isNew&quot;: false,
+                &quot;isHot&quot;: 0,
+                &quot;publishable&quot;: false,
+                &quot;isPublished&quot;: true
+            },
+            ...
+                    ]
+    },
+    &quot;msg&quot;: &quot;操作成功&quot;,
+    &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxx&quot;,
+  &quot;error&quot;: 1
+}
+</code></pre>
+
+<p>返回字段释义（部分）：</p>
+
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>类型</th>
+<th>必带</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>index</td>
+<td>int</td>
+<td>true</td>
+<td>序号</td>
+<td></td>
+</tr>
+
+<tr>
+<td>status</td>
+<td>string</td>
+<td>true</td>
+<td>状态名称</td>
+<td></td>
+</tr>
+
+<tr>
+<td>editor</td>
+<td>string</td>
+<td>true</td>
+<td>最后编辑名</td>
+<td></td>
+</tr>
+
+<tr>
+<td>isHot</td>
+<td>int</td>
+<td>true</td>
+<td>是否热门</td>
+<td>非热门:0,热门:在热门流的序号</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="新鲜事流">新鲜事流</h2>
+
+<ul>
+<li>发布管理： /fresh/ajax_getOnline</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-7-09 15:34</mark></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>false</td>
+<td>页码</td>
+<td>可选，默认1</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>false</td>
+<td>每页最大条数</td>
+<td>可选，默认20，10-50之间（含）</td>
+</tr>
+
+<tr>
+<td>kw</td>
+<td>string</td>
+<td>false</td>
+<td>搜索关键词</td>
+<td>可选</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-1">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+    &quot;result&quot;: {
+        &quot;total&quot;: 42,
+        &quot;total_pages&quot;: 3,
+        &quot;current&quot;: 1,
+        &quot;list&quot;: [
+            {
+                &quot;index&quot;: 1,
+                &quot;id&quot;: 7541528341780481,
+                &quot;oid&quot;: &quot;1022:23126100007541528341780481&quot;,
+                &quot;title&quot;: &quot;新鲜事009&quot;,
+                &quot;status&quot;: -98,
+                &quot;editor&quot;: &quot;@测试push的喵[房地产]&quot;,
+                &quot;edited_time_ts&quot;: 1499424963,
+                &quot;edited_time&quot;: &quot;2017-07-07 18:56:03&quot;,
+                &quot;created_time&quot;: &quot;2017-07-07 18:02:12&quot;,
+                &quot;publish_time&quot;: &quot;2017-07-07 18:03:10&quot;,
+                &quot;isPinned&quot;: false,
+                &quot;editable&quot;: true,
+                &quot;isNew&quot;: false,
+                &quot;isHot&quot;: 0,
+                &quot;deletable&quot;: true,
+                &quot;online_able&quot;: false,
+                &quot;offline_able&quot;: true
+            }
+            ...
+        ]
+    },
+    &quot;msg&quot;: &quot;操作成功&quot;,
+    &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxx&quot;,
+  &quot;error&quot;: 1
+}
+</code></pre>
+
+<h2 id="全部可用">全部可用</h2>
+
+<ul>
+<li>发布管理： /fresh/ajax_getPublished</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-7-09 15:50</mark></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>false</td>
+<td>页码</td>
+<td>可选，默认1</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>false</td>
+<td>每页最大条数</td>
+<td>可选，默认20，10-50之间（含）</td>
+</tr>
+
+<tr>
+<td>kw</td>
+<td>string</td>
+<td>false</td>
+<td>搜索关键词</td>
+<td>可选</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-2">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+    &quot;result&quot;: {
+        &quot;total&quot;: 42,
+        &quot;total_pages&quot;: 3,
+        &quot;current&quot;: 1,
+        &quot;list&quot;: [
+            
+            {
+                &quot;index&quot;: 1,
+                &quot;id&quot;: 7541061068003329,
+                &quot;oid&quot;: &quot;1022:23126100007541061068003329&quot;,
+                &quot;title&quot;: &quot;离离原上草&quot;,
+                &quot;status&quot;: 1,
+                &quot;editor&quot;: &quot;@韦字只念第二声[互联网]&quot;,
+                &quot;edited_time_ts&quot;: 1498645017,
+                &quot;edited_time&quot;: &quot;2017-06-28 18:16:57&quot;,
+                &quot;created_time&quot;: &quot;2017-06-27 10:28:05&quot;,
+                &quot;publish_time&quot;: &quot;2017-06-27 16:39:16&quot;,
+                &quot;isPinned&quot;: false,
+                &quot;editable&quot;: false,
+                &quot;isNew&quot;: false,
+                &quot;isHot&quot;: 1498530485,
+                &quot;isOnline&quot;:false,
+                &quot;deletable&quot;: true,
+                &quot;online_able&quot;: false,
+                &quot;offline_able&quot;: true
+            }
+            ...
+        ]
+    },
+    &quot;msg&quot;: &quot;操作成功&quot;,
+    &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxx&quot;,
+  &quot;error&quot;: 1
+}
+</code></pre>
+
+<p>返回字段释义（部分）：</p>
+
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>类型</th>
+<th>必带</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isOnline</td>
+<td>bool</td>
+<td>true</td>
+<td>是否在新鲜事流</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="已删除">已删除</h2>
+
+<ul>
+<li>发布管理： /fresh/ajax_getDeleted</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-7-09 15:41</mark></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>false</td>
+<td>页码</td>
+<td>可选，默认1</td>
+</tr>
+
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>false</td>
+<td>每页最大条数</td>
+<td>可选，默认20，10-50之间（含）</td>
+</tr>
+
+<tr>
+<td>kw</td>
+<td>string</td>
+<td>false</td>
+<td>搜索关键词</td>
+<td>可选</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-3">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+    &quot;result&quot;: {
+        &quot;total&quot;: 1,
+        &quot;total_pages&quot;: 1,
+        &quot;current&quot;: 1,
+        &quot;list&quot;: [
+            {
+                &quot;index&quot;: 1,
+                &quot;id&quot;: 7541341254850561,
+                &quot;oid&quot;: &quot;1022:23126100007541341254850561&quot;,
+                &quot;title&quot;: &quot;说你傻，你真傻11111&quot;,
+                &quot;status&quot;: &quot;10&quot;,
+                &quot;editor&quot;: &quot;@江之涛涛[互联网]&quot;,
+                &quot;edited_ts&quot;: 1499308491,
+                &quot;edited_time&quot;: &quot;2017-07-06 10:34:51&quot;,
+                &quot;created_time&quot;: &quot;2017-07-03 14:54:57&quot;,
+                &quot;publish_time&quot;: &quot;2017-07-03 15:09:46&quot;,
+                &quot;isPinned&quot;: false,
+                &quot;editable&quot;: false,
+                &quot;isNew&quot;: false,
+                &quot;isHot&quot;: 0,
+                &quot;deletable&quot;: false,
+                &quot;online-able&quot;: false,
+                &quot;offline-able&quot;: true
+            }
+        ]
+    },
+    &quot;msg&quot;: &quot;操作成功&quot;,
+    &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxx&quot;,
+  &quot;error&quot;: 1
+}
+</code></pre>
+
+<p>返回字段释义（部分）：</p>
+
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>类型</th>
+<th>必带</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>isOnline</td>
+<td>bool</td>
+<td>true</td>
+<td>是否在新鲜事流</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="获取详情">获取详情</h1>
+
+<h2 id="获取新鲜事详情">获取新鲜事详情</h2>
+
+<ul>
+<li>发布管理： /fresh/ajax_getInfo</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-7-10 12:43</mark></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>false</td>
+<td>新鲜事id</td>
+<td>默认0,如为0则返回一条空的新鲜事</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-4">返回结果</h3>
+
+<p><em>不传id：</em></p>
+
+<pre><code class="language-json">{
+    &quot;result&quot;: {
+        &quot;id&quot;: 0,
+        &quot;title&quot;: &quot;&quot;,
+        &quot;cover&quot;: null,
+        &quot;summary&quot;: &quot;&quot;,
+        &quot;topic&quot;: null,
+        &quot;edited_time&quot;: 0,
+        &quot;isNew&quot;: false,
+        &quot;editor&quot;: &quot;&quot;,
+        &quot;wbTopic&quot;: &quot;&quot;,
+        &quot;editor_name&quot;: &quot;&quot;,
+        &quot;tagCategory&quot;: &quot;&quot;,
+        &quot;blocks&quot;: [],
+        &quot;pushable&quot;:false,
+        &quot;publishable&quot;:false,
+        &quot;allow_contribute&quot;:0
+    },
+    &quot;msg&quot;: &quot;ok&quot;,
+    &quot;error&quot;: 0
+}
+</code></pre>
+
+<p><em>传了id且新鲜事存在</em></p>
+
+<pre><code class="language-json">{
+    &quot;result&quot;: {
+        &quot;id&quot;: 7541341254850561,
+        &quot;title&quot;: &quot;说你傻，你真傻11111&quot;,
+        &quot;cover&quot;: {
+            &quot;type&quot;: &quot;image&quot;,
+            &quot;url&quot;: &quot;http://wx3.sinaimg.cn/wap720/90eb2137ly1fh94r96du5j20go0goq8m.jpg&quot;,
+            &quot;reject&quot;: &quot;&quot;,
+            &quot;origin&quot;: &quot;http://wx3.sinaimg.cn/wap720/90eb2137ly1fh94r96du5j20go0goq8m.jpg&quot;
+        },
+        &quot;summary&quot;: &quot;抓只小猴刷一刷1111&quot;,
+        &quot;topic&quot;: {
+            &quot;type&quot;: 1,
+            &quot;data&quot;: [
+        &quot;炉石传说&quot;,
+        &quot;王者荣耀&quot;,
+        &quot;守望先锋&quot;,
+        &quot;游戏&quot;
+    ]
+        },
+        &quot;edited_time&quot;: 1499308491,
+        &quot;isNew&quot;: false,
+        &quot;editor&quot;: 1,
+        &quot;wbTopic&quot;: &quot;有一种力量叫傻瓜&quot;,
+        &quot;editor_name&quot;: &quot;@江之涛涛[互联网]&quot;,
+        &quot;tagCategory&quot;: &quot;1042015:tagCategory_019&quot;,
+        &quot;publishable&quot;:false,
+        &quot;pushable&quot;:false,
+        &quot;allow_contribute&quot;:0,
+        &quot;blocks&quot;: [
+            {
+                &quot;block_id&quot;: 67,
+                &quot;title&quot;: &quot;随便搞一条&quot;,
+                &quot;show_comment&quot;: []
+            }
+        ]
+    },
+    &quot;msg&quot;: &quot;success&quot;,
+    &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxx&quot;,
+  &quot;error&quot;: 1
+}
+</code></pre>
+
+<p>返回字段释义（部分）：</p>
+
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>类型</th>
+<th>必带</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>cover</td>
+<td>object</td>
+<td>true</td>
+<td>封面图对象</td>
+<td>目前只支持图片</td>
+</tr>
+
+<tr>
+<td>topic</td>
+<td>object</td>
+<td>true</td>
+<td>微博热议</td>
+<td></td>
+</tr>
+
+<tr>
+<td>wbTopic</td>
+<td>string</td>
+<td>true</td>
+<td>绑定的微博话题</td>
+<td></td>
+</tr>
+
+<tr>
+<td>tagCategory</td>
+<td>string</td>
+<td>true</td>
+<td>领域</td>
+<td>非热门:0,热门:在热门流的序号</td>
+</tr>
+
+<tr>
+<td>blocks</td>
+<td>array</td>
+<td>true</td>
+<td>板块列表</td>
+<td></td>
+</tr>
+
+<tr>
+<td>publishable</td>
+<td>bool</td>
+<td>true</td>
+<td>是否发布（包含发微博）</td>
+<td></td>
+</tr>
+
+<tr>
+<td>pushable</td>
+<td>bool</td>
+<td>true</td>
+<td>是否发推送</td>
+<td></td>
+</tr>
+
+<tr>
+<td>allow_contribute</td>
+<td>int</td>
+<td>true</td>
+<td>是否允许网友投稿，0:不允许,1:允许</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="获取新鲜事下面的某一板块详情">获取新鲜事下面的某一板块详情</h2>
+
+<ul>
+<li>发布管理： /fresh/ajax_getBlock</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-7-9 16:22</mark></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>fresh_id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>block_id</td>
+<td>int</td>
+<td>false</td>
+<td>板块id</td>
+<td>默认0,如为0则返回一条空的板块</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-5">返回结果</h3>
+
+<p><em>不传block_id:</em></p>
+
+<pre><code class="language-json">{
+    &quot;result&quot;: {
+        &quot;block_id&quot;: 0,
+        &quot;title&quot;: &quot;&quot;,
+        &quot;mids&quot;: &quot;&quot;,
+        &quot;data&quot;: [],
+        &quot;show_comment&quot;: []
+    },
+    &quot;msg&quot;: &quot;ok&quot;,
+    &quot;error&quot;: 0
+}
+</code></pre>
+
+<p><em>传了block_id且新鲜事下的该板块存在</em></p>
+
+<pre><code class="language-json">{
+    &quot;result&quot;: {
+        &quot;block_id&quot;: 27,
+        &quot;title&quot;: &quot;test&quot;,
+        &quot;mids&quot;: &quot;4121201233865829,4120735910325510&quot;,
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: 4121201233865829,
+                &quot;mid&quot;: &quot;4121201233865829&quot;,
+                &quot;source&quot;: &quot;&lt;a href=\&quot;http://app.weibo.com/t/feed/5ttZpb\&quot; rel=\&quot;nofollow\&quot;&gt;前后2000万 OPPO R11&lt;/a&gt;&quot;,
+                &quot;ts&quot;: 1498054406,
+                &quot;date&quot;: &quot;06月21日 22:13&quot;,
+                &quot;midbase62&quot;: &quot;F8TxxgdG5&quot;,
+                &quot;text&quot;: &quot;喏 ​&quot;,
+                &quot;uid&quot;: 3623353053,
+                &quot;name&quot;: &quot;TFBOYS-易烊千玺&quot;,
+                &quot;avatar&quot;: &quot;http://tva4.sinaimg.cn/crop.0.0.512.512.50/d7f7faddjw8ez3v2wecdhj20e80e83zb.jpg&quot;,
+                &quot;thumbnail_pic&quot;: &quot;http://wx3.sinaimg.cn/thumbnail/d7f7faddly1fgt6hj6puzj22c0340e85.jpg&quot;,
+                &quot;reposts_count&quot;: 3525491,
+                &quot;comments_count&quot;: 312777,
+                &quot;attitudes_count&quot;: 847842,
+                &quot;url_objects&quot;: [],
+                &quot;url&quot;: &quot;weibo.com/3623353053/F8TxxgdG5&quot;
+            }
+        ],
+        &quot;show_comment&quot;: []
+    },
+    &quot;msg&quot;: &quot;success&quot;,
+    &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxx&quot;,
+  &quot;error&quot;: 1
+}
+</code></pre>
+
+<p>返回字段释义（部分）：</p>
+
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>类型</th>
+<th>必带</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>mids</td>
+<td>string</td>
+<td>true</td>
+<td>该板块下的所有的mid</td>
+<td>多个mid用,隔开</td>
+</tr>
+
+<tr>
+<td>data</td>
+<td>array</td>
+<td>true</td>
+<td>所有微博对象组成的数组</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="新增-修改-删除新鲜事和板块">新增、修改、删除新鲜事和板块</h1>
+
+<h2 id="新增-修改新鲜事">新增、修改新鲜事</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_updateFresh</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-5-15 17:07</mark></li>
+</ul>
+
+<h3 id="请求参数">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>false</td>
+<td>新鲜事id</td>
+<td>0表示新增，大于0表示修改</td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>最后修改时间</td>
+<td></td>
+</tr>
+
+<tr>
+<td>title</td>
+<td>string</td>
+<td>true</td>
+<td>标题</td>
+<td>最大25个字</td>
+</tr>
+
+<tr>
+<td>summary</td>
+<td>string</td>
+<td>true</td>
+<td>摘要</td>
+<td>最大140个字</td>
+</tr>
+
+<tr>
+<td>cover</td>
+<td>string</td>
+<td>true</td>
+<td>封面图</td>
+<td>格式：<code>{&quot;type&quot;:&quot;image&quot;, &quot;url&quot;:&quot;http://tvax4.sinaimg.cn/crop.0.0.615.615.180/814bf817ly8fdpjsrx0jgj20jg165jus.jpg&quot;}</code></td>
+</tr>
+
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>true</td>
+<td>话题</td>
+<td>格式为：<code>{&quot;type&quot;:1,&quot;data&quot;:[&quot;topic1&quot;,&quot;topic2&quot;,&quot;topic3&quot;]}</code>，type为0表示或，1表示与。</td>
+</tr>
+
+<tr>
+<td>tagCategory</td>
+<td>string</td>
+<td>true</td>
+<td>领域</td>
+<td>格式为：<code>1042015:tagCategory_001</code></td>
+</tr>
+
+<tr>
+<td>wbTopic</td>
+<td>string</td>
+<td>true</td>
+<td>绑定的微博话题</td>
+<td></td>
+</tr>
+
+<tr>
+<td>allow_contribute</td>
+<td>int</td>
+<td>true</td>
+<td>是否允许网友投稿</td>
+<td>0:不允许,1:允许</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-6">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  &quot;result&quot;: {
+    &quot;id&quot;: 1488977057,
+    &quot;edited_time&quot;: 1488977057
+    ...
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="新增-修改板块">新增、修改板块</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_updateBlock</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 17:01</mark></li>
+</ul>
+
+<h3 id="请求参数-1">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>fresh_id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>block_id</td>
+<td>int</td>
+<td>false</td>
+<td>板块id</td>
+<td>0表示新增，大于0表示修改</td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>上次操作返回的 <code>edited_time</code> 字段</td>
+<td>必需</td>
+</tr>
+
+<tr>
+<td>title</td>
+<td>string</td>
+<td>true</td>
+<td>标题</td>
+<td>可选，最大10个字</td>
+</tr>
+
+<tr>
+<td>mids</td>
+<td>string</td>
+<td>true</td>
+<td>mid集合</td>
+<td>可选，多个mid使用 <code>,</code> 分割</td>
+</tr>
+
+<tr>
+<td>show_comment</td>
+<td>string</td>
+<td>false</td>
+<td>显示评论的mid集合</td>
+<td>可选，多个mid使用 <code>,</code> 分割</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-7">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  &quot;result&quot;: {
+    &quot;fresh_id&quot;: 1488977057,
+    &quot;block_id&quot;: 51,
+    &quot;edited_time&quot;: 1488977057
+    ...
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="删除新鲜事">删除新鲜事</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_deleteFresh</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 17:15</mark></li>
+</ul>
+
+<h3 id="请求参数-2">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>| edited_time | int|true|上次操作返回的 <code>edited_time</code> 字段 | 必需 |</p>
+
+<h3 id="返回结果-8">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  
+  &quot;msg&quot;: &quot;操作新鲜事成功&quot;,
+  &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="删除板块">删除板块</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_deleteBlock</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 17:15</mark></li>
+</ul>
+
+<h3 id="请求参数-3">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>fresh_id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>block_id</td>
+<td>int</td>
+<td>true</td>
+<td>板块id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>上次操作返回的 <code>edited_time</code> 字段</td>
+<td>必需</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-9">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  
+  &quot;result&quot;: {
+    &quot;fresh_id&quot;: 1488977057,
+    &quot;block_id&quot;: 51,
+    &quot;edited_time&quot;: 1488977057
+  },
+  &quot;msg&quot;: &quot;删除板块成功&quot;,
+  &quot;error&quot;: 0
+
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h1 id="新鲜事运营相关">新鲜事运营相关</h1>
+
+<h2 id="发布新鲜事">发布新鲜事</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_publish</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 17:15</mark></li>
+</ul>
+
+<h3 id="请求参数-4">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>上次操作返回的 <code>edited_time</code> 字段</td>
+<td>必需</td>
+</tr>
+
+<tr>
+<td>weiboText</td>
+<td>int</td>
+<td>true</td>
+<td>需要发微博的内容</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-10">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  
+  &quot;result&quot;: {
+    &quot;id&quot;: 1488977057,
+   
+    &quot;edited_time&quot;: 1488977057
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="发送消息通知">发送消息通知</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_push</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 17:43</mark></li>
+</ul>
+
+<h3 id="请求参数-5">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>上次操作返回的 <code>edited_time</code> 字段</td>
+<td>必需</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-11">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  
+  &quot;result&quot;: {
+    &quot;id&quot;: 1488977057,
+   
+    &quot;edited_time&quot;: 1488977057
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="上榜">上榜</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_online</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 17:45</mark></li>
+</ul>
+
+<h3 id="请求参数-6">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>上次操作返回的 <code>edited_time</code> 字段</td>
+<td>必需</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-12">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  
+  &quot;result&quot;: {
+  
+    &quot;edited_time&quot;: 1488977057
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="下榜">下榜</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_offline</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 17:49</mark></li>
+</ul>
+
+<h3 id="请求参数-7">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>上次操作返回的 <code>edited_time</code> 字段</td>
+<td>必需</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-13">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  
+  &quot;result&quot;: {
+  
+    &quot;edited_time&quot;: 1488977057
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="排序">排序</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_move</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 18:24</mark></li>
+</ul>
+
+<h3 id="请求参数-8">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>上次操作返回的 <code>edited_time</code> 字段</td>
+<td>必需</td>
+</tr>
+
+<tr>
+<td>type</td>
+<td>int</td>
+<td>true</td>
+<td>操作编号</td>
+<td>0:下移,1:上移</td>
+</tr>
+</tbody>
+</table>
+
+<p><em>操作成功请重新获取列表</em></p>
+
+<h3 id="返回结果-14">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+ 
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="置顶-取消置顶">置顶、取消置顶</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_pin</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 18:24</mark></li>
+</ul>
+
+<h3 id="请求参数-9">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>type</td>
+<td>int</td>
+<td>true</td>
+<td>操作编号</td>
+<td>0:取消置顶,1:置顶</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-15">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+ &quot;result&quot;: {
+    &quot;edited_time&quot;: 1488977057
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="标新-取消标新">标新、取消标新</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_makeNew</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 18:35</mark></li>
+</ul>
+
+<h3 id="请求参数-10">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>type</td>
+<td>int</td>
+<td>true</td>
+<td>操作编号</td>
+<td>0:取消标新,1:标新</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-16">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+ &quot;result&quot;: {
+    &quot;edited_time&quot;: 1488977057
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;xxxx&quot;,
+  &quot;error&quot;: 12345
+}
+</code></pre>
+
+<h2 id="板块排序">板块排序</h2>
+
+<ul>
+<li>接口地址： /fresh/ajax_sortBlocks</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-7-9 19:18</mark></li>
+</ul>
+
+<h3 id="请求参数-11">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>fresh_id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事 id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>上次操作返回的 <code>edited_time</code> 字段</td>
+<td></td>
+</tr>
+
+<tr>
+<td>blocks_sort</td>
+<td>string</td>
+<td>true</td>
+<td>板块顺序</td>
+<td>格式为 <code>105,106,107,108,109</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-17">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  &quot;result&quot;: {
+    &quot;id&quot;: &quot;87423423&quot;,
+    &quot;edited_time&quot;: 1489066920
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+}
+</code></pre>
+
+<h2 id="url-获取微博">URL 获取微博</h2>
+
+<ul>
+<li>接口地址： /api/ajax_getWeiboStatusByUrl</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-5-15 17:34</mark></li>
+</ul>
+
+<h3 id="请求参数-12">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>true</td>
+<td>微博 URL</td>
+<td>必须<code>urlencode</code>转义</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-18">返回结果</h3>
+
+<p>请求成功：</p>
+
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;EzXOvEwWB&quot;,
+    &quot;text&quot;: &quot;晒出一张你所在地，你拍得最美的风景​&quot;,
+    &quot;ts&quot;: 1489593608,
+    &quot;date&quot;: &quot;03月15日 16:00&quot;,
+    &quot;uid&quot;: 1713926427,
+    &quot;source&quot;: &quot;&lt;a href=\&quot;http://weibo.com/\&quot; rel=\&quot;nofollow\&quot;&gt;榜姐的iPhone&lt;/a&gt;&quot;,
+    &quot;name&quot;: &quot;微博搞笑排行榜&quot;,
+    &quot;avatar&quot;: &quot;http://tva4.sinaimg.cn/crop.0.0.180.180.50/6628711bjw1e8qgp5bmzyj2050050aa8.jpg&quot;,
+    &quot;reposts_count&quot;: 10854,
+    &quot;comments_count&quot;: 187816,
+    &quot;url&quot;: &quot;http://weibo.com/1713926427/0000&quot;
+  },
+  &quot;msg&quot;: &quot;操作成功&quot;,
+  &quot;error&quot;: 0
+}
+</code></pre>
+
+<p>请求失败：</p>
+
+<pre><code class="language-json">{
+  &quot;msg&quot;: &quot;url不合法&quot;,
+  &quot;error&quot;: 1
+}
+</code></pre>
+
+<h2 id="预览">预览</h2>
+
+<ul>
+<li>接口地址： /fresh/preview</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-7-9 20:09</mark></li>
+</ul>
+
+<h3 id="请求参数-13">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>true</td>
+<td>新鲜事id</td>
+<td></td>
+</tr>
+
+<tr>
+<td>edited_time</td>
+<td>int</td>
+<td>true</td>
+<td>上次操作返回的 <code>edited_time</code> 字段</td>
+<td>必需</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="返回结果-19">返回结果</h3>
+
+<p>直接跳转</p>
+
+<h1 id="高级选择器部分">高级选择器部分</h1>
+
+<h2 id="根据话题名称搜索微博列表">根据话题名称搜索微博列表</h2>
+
+<ul>
+<li>接口地址： /api/ajax_getTopicWeiboList</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-6-9 19:55</mark></li>
+</ul>
+
+<h3 id="请求参数-14">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>true</td>
+<td>微博话题内容</td>
+<td></td>
+</tr>
+
+<tr>
+<td>page</td>
+<td>int</td>
+<td>false</td>
+<td>分页</td>
+<td>可选，默认 1</td>
+</tr>
+
+<tr>
+<td>count</td>
+<td>int</td>
+<td>false</td>
+<td>返回数目</td>
+<td>可选，默认 50</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="高级选择器搜索接口">高级选择器搜索接口</h2>
+
+<ul>
+<li>接口地址： /api/ajax_searchWeibo</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-5-15 17:55</mark></li>
+</ul>
+
+<h3 id="请求参数-15">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>kw</td>
+<td>string</td>
+<td>true</td>
+<td>搜索关键词</td>
+<td></td>
+</tr>
+
+<tr>
+<td>page</td>
+<td>int</td>
+<td>false</td>
+<td>分页</td>
+<td>可选，默认 1</td>
+</tr>
+
+<tr>
+<td>count</td>
+<td>int</td>
+<td>false</td>
+<td>返回数目</td>
+<td>可选，默认 50</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="通过-id-获取微博">通过 id 获取微博</h2>
+
+<ul>
+<li>接口地址： /api/ajax_weiboStatusesShow</li>
+<li>请求方式： GET</li>
+<li>修改时间： <mark>2017-5-15 17:55</mark></li>
+</ul>
+
+<h3 id="请求参数-16">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>mid</td>
+<td>int</td>
+<td>true</td>
+<td>微博mid</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="上传图片">上传图片</h2>
+
+<ul>
+<li>接口地址： /api/ajax_uploadImg</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-5-15 14:54</mark></li>
+</ul>
+
+<p><em>content-type 必须为 <code>multipart/form-data</code> </em></p>
+
+<h3 id="请求参数-17">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>uploadBox</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="话题搜索">话题搜索</h2>
+
+<ul>
+<li>接口地址： /api/ajax_searchTopic</li>
+<li>请求方式： POST</li>
+<li>修改时间： <mark>2017-6-19 14:54</mark></li>
+</ul>
+
+<h3 id="请求参数-18">请求参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>kw</td>
+<td>string</td>
+<td>true</td>
+<td>搜索词</td>
+<td></td>
+</tr>
+
+<tr>
+<td>count</td>
+<td>int</td>
+<td>false</td>
+<td>条数</td>
+<td>取值1-50,默认10</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+
+    </main>
+
+    
+  </body>
+</html>

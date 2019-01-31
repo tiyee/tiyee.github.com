@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tiyee&#39;s 微言微语</title>
-    <link>http://tiyee.github.io/</link>
-    <description>Recent content on tiyee&#39;s 微言微语</description>
+    <title>Posts on tiyee&#39;s 微言微语</title>
+    <link>http://tiyee.github.io/post/</link>
+    <description>Recent content in Posts on tiyee&#39;s 微言微语</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-ch</language>
     <lastBuildDate>Thu, 31 Jan 2019 14:42:35 +0800</lastBuildDate>
     
-	<atom:link href="http://tiyee.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://tiyee.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,19 +19,6 @@
       <guid>http://tiyee.github.io/post/first/</guid>
       <description>新版微博新鲜事接口 返回结果格式：
  成功时 error == 0 失败时 error &amp;gt; 0  前置说明  未发布过的新鲜事：publish_time = 0 榜上的新鲜事：publish_time &amp;gt; 1000000000 榜下但可访问的新鲜事：1000000000 &amp;gt; publish_time &amp;gt; 0 删除的新鲜事：status = 10  新鲜事列表 发布管理  发布管理： /fresh/ajax_getList 请求方式： GET 修改时间： 2017-7-09 15:13     参数名称 类型 必填 说明 备注     page int false 页码 可选，默认1   limit int false 每页最大条数 可选，默认20，10-50之间（含）   kw string false 搜索关键词 可选    返回结果 请求成功：</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>http://tiyee.github.io/about/</link>
-      <pubDate>Thu, 31 Jan 2019 14:35:22 +0800</pubDate>
-      
-      <guid>http://tiyee.github.io/about/</guid>
-      <description>我叫江涛，一般用tiyee的昵称 在北京工作近五年，目前在新浪微博负责移动端服务器开发 Email: tiyee@ live . com
-Blog: tiyee&amp;rsquo;s微言微语
-Github: https://github.com/tiyee
-##待过的公司##
-1.高思教育 2.中公教育 3.易游天下 ##我的技能## 技能比较杂，目前主要是python开发，也使用go node.js php c</description>
     </item>
     
   </channel>
